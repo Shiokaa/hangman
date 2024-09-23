@@ -14,6 +14,8 @@ func Menu() {
 	fmt.Scan(&choix)
 	switch choix {
 	case 1:
+		fmt.Println("Bienvenu dans le jeu du pendu !")
+		
 	case 2:
 		data, _ := os.ReadFile("./random/words.txt")
 		fmt.Println(string(data))

@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"hangman/random"
 	"math/rand/v2"
+	"strings"
 )
 
 var Word string = random.RandomWord()
@@ -24,10 +25,22 @@ func Hiddenword() string {
 	return hiddenword
 }
 
-func PlayerChoseChar() {
+func PlayerChoseChar() string {
+	newHiddenWord := Hiddenword()
 	var choix string
 	fmt.Scan(&choix)
-	for _, char := range Word {
-		if 
+	for _, char := range newHiddenWord {
+		if choix == string(char) {
+			fmt.Println("Vous avez déjà trouvé cette lettre")
+			PlayerChoseChar()
+		} else {
+			for _, char := range Word {
+				if strings.Contains(Word, choix) {
+					strings.Replace(newHiddenWord, "_", string(char), -1)
+					fmt.Println("bravo")
+				}
+			}
+		}
 	}
+	return newHiddenWord
 }
