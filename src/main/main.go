@@ -1,9 +1,9 @@
 package main
 
 import (
-	"hangman/game"
+	"hangman/menu"
 )
 
 func main() {
-	game.PlayerChoseChar()
+	menu.Menu()
 }
