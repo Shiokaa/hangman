@@ -1,7 +1,10 @@
 package main
 
-import "hangman/game"
+import (
+	"fmt"
+	"hangman/game"
+)
 
 func main() {
-	game.Test()
+	fmt.Println(game.Hiddenword())
 }

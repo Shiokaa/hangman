@@ -1,18 +1,33 @@
 package game
 
 import (
+	"fmt"
 	"hangman/random"
 	"math/rand/v2"
 )
 
-func Test() {
-	word := ""
-	n := rand.IntN(len(random.RandomWord()) - 1)
-	for i, char := range random.RandomWord() {
-		if i != n {
-			word += "_"
+var Word string = random.RandomWord()
+
+func Hiddenword() string {
+	hiddenword := ""
+	n := rand.IntN(len(Word) - 1)
+	for i, char := range Word {
+		if i == n {
+			hiddenword += string(char)
 		} else {
-			word += string(char)
+			hiddenword += "_"
 		}
+		if i == len(Word)-1 {
+			break
+		}
+	}
+	return hiddenword
+}
+
+func PlayerChoseChar() {
+	var choix string
+	fmt.Scan(&choix)
+	for _, char := range Word {
+		if 
 	}
 }
