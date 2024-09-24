@@ -2,7 +2,6 @@ package menu
 
 import (
 	"fmt"
-	"hangman/game"
 	"os"
 	"time"
 )
@@ -20,8 +19,8 @@ func Menu() {
 		fmt.Print("\033[H\033[2J")
 		fmt.Printf("Bienvenu dans le jeu du pendu !\n\n")
 		time.Sleep(2 * time.Second)
-		game.PlayerChoseChar()
 	case 2:
+		fmt.Print("\033[H\033[2J")
 		data, _ := os.ReadFile("./random/words.txt")
 		fmt.Println(string(data))
 	}

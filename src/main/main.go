@@ -1,9 +1,8 @@
 package main
 
-import (
-	"hangman/menu"
-)
+import "hangman/game"
 
 func main() {
-	menu.Menu()
+	game.FindLetter()
+	game.FindWord()
 }
