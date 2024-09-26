@@ -42,3 +42,5 @@ Les règles du jeu sont les suivantes :
 - Si la lettre est incorrecte, vous perdrez une tentative.
 - Vous gagnez si vous devinez toutes les lettres du mot avant d'épuiser vos tentatives.
 - Vous perdez si vous atteignez le nombre maximal de tentatives incorrectes (6).
+
+## Bon Jeu !
