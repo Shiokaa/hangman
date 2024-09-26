@@ -16,7 +16,7 @@ func Menu() {
 	fmt.Println("    \\--------------------------/")
 	fmt.Scan(&choix)
 
-	for choix != 1 && choix != 2 {
+	for choix != 1 && choix != 2 && choix != 0 {
 		fmt.Println("Veuillez entrer 1 ou 2 !")
 		fmt.Scan(&choix)
 	}
@@ -28,5 +28,11 @@ func Menu() {
 		fmt.Print("\033[H\033[2J")
 		data, _ := os.ReadFile("./random/words.txt")
 		fmt.Println(string(data))
+		fmt.Println("Appuyez sur 0 pour quitter !")
+		fmt.Scan(&choix)
+		switch choix {
+		case 0:
+			Menu()
+		}
 	}
 }
