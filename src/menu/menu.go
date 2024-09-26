@@ -3,7 +3,6 @@ package menu
 import (
 	"fmt"
 	"os"
-	"time"
 )
 
 func Menu() {
@@ -16,9 +15,7 @@ func Menu() {
 	fmt.Scan(&choix)
 	switch choix {
 	case 1:
-		fmt.Print("\033[H\033[2J")
-		fmt.Printf("Bienvenu dans le jeu du pendu !\n\n")
-		time.Sleep(2 * time.Second)
+		
 	case 2:
 		fmt.Print("\033[H\033[2J")
 		data, _ := os.ReadFile("./random/words.txt")
