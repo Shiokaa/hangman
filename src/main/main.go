@@ -1,7 +1,9 @@
 package main
 
-import "hangman/game"
+import (
+	"hangman/menu"
+)
 
 func main() {
-	game.Display()
+	menu.Menu()
 }
