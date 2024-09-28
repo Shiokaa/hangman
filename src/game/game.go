@@ -9,12 +9,14 @@ import (
 )
 
 var Word string = string(ConvertedWord())
-var HiddenWord []rune = CreateSlice()
+var HiddenWord []rune
 var Counter int = 6
 var LettersAlreadyFound []string
+var DiffCounter int
 
 func Display() {
 	var choix int
+	var choixDiff int
 	text := "Bienvenue dans le jeu du pendu ! Les mots possèdent une majuscule mais pas d'accent, bon jeu à vous !"
 	fmt.Print("\033[H\033[2J")
 
@@ -23,7 +25,21 @@ func Display() {
 		time.Sleep(40 * time.Millisecond)
 	}
 	time.Sleep(3 * time.Second)
-
+	fmt.Print("\033[H\033[2J")
+	fmt.Printf("Choisissez votre difficulté !\n\n")
+	fmt.Printf("1- Facile (2 lettres de révélés)\n\n")
+	fmt.Printf("2- Difficile (1 lettre de révélé) ")
+	fmt.Scan(&choixDiff)
+	for choixDiff != 1 && choixDiff != 2 {
+		fmt.Printf("Veuillez taper 1 ou 2 ! ")
+	}
+	if choixDiff == 1 {
+		DiffCounter = 2
+		HiddenWord = CreateSlice()
+	} else {
+		DiffCounter = 1
+		HiddenWord = CreateSlice()
+	}
 	for Word != string(HiddenWord) && Counter > 0 {
 		fmt.Print("\033[H\033[2J")
 		fmt.Println("LE JEU DU PENDU !")
@@ -68,15 +84,36 @@ func Display() {
 func CreateSlice() []rune {
 	var runeSlice []rune
 	n := rand.IntN(len(Word) - 1)
+	x := rand.IntN(len(Word) - 1)
 
-	for i, char := range Word {
-		if i == len(Word) {
-			break
+	for x == n {
+		x = rand.IntN(len(Word) - 1)
+	}
+
+	if DiffCounter == 1 {
+		for i, char := range Word {
+			if i == len(Word) {
+				break
+			}
+			if i == n {
+				runeSlice = append(runeSlice, char)
+			} else {
+				runeSlice = append(runeSlice, '_')
+			}
 		}
-		if i == n {
-			runeSlice = append(runeSlice, char)
-		} else {
-			runeSlice = append(runeSlice, '_')
+	}
+
+	if DiffCounter == 2 {
+		for i, char := range Word {
+			if i == len(Word) {
+				break
+			} else if i == n {
+				runeSlice = append(runeSlice, char)
+			} else if i == x {
+				runeSlice = append(runeSlice, char)
+			} else {
+				runeSlice = append(runeSlice, '_')
+			}
 		}
 	}
 
@@ -100,7 +137,7 @@ func FindLetter() []rune {
 
 	for _, letters := range LettersAlreadyFound {
 		if choix == letters {
-			fmt.Printf("Lettre déjà utilisé !")
+			fmt.Printf("Lettre déjà utilisé ! ")
 			fmt.Scan(&choix)
 		}
 	}
