@@ -23,6 +23,7 @@ func Menu() {
 
 	switch choix {
 	case 1:
+		game.TwoPlayers()
 		game.Display()
 	case 2:
 		fmt.Print("\033[H\033[2J")
