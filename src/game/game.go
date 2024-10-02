@@ -68,6 +68,7 @@ func Display() {
 
 		fmt.Printf("\n1- Pour entrer une lettre !")
 		fmt.Printf("\n2- Pour entrer un mot !\n\n")
+
 		fmt.Scan(&choix)
 
 		for choix != 1 && choix != 2 {
@@ -169,6 +170,7 @@ func FindLetter() []rune {
 	if !wordFind {
 		LettersAlreadyFound = append(LettersAlreadyFound, choix)
 		Counter--
+
 	}
 
 	return HiddenWord
