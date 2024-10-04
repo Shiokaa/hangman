@@ -4,16 +4,18 @@ import (
 	"fmt"
 	"hangman/game"
 	"os"
+
+	"github.com/fatih/color"
 )
 
 func Menu() {
 	var choix int
 
 	fmt.Print("\033[H\033[2J")
-	fmt.Println("\\----------Menu Principal----------/")
-	fmt.Println("     1- Pour lancer une partie")
-	fmt.Println("     2- Pour voir tout les mots ")
-	fmt.Println("    \\--------------------------/")
+	color.Blue("\\----------Menu Principal----------/")
+	color.Blue("     1- Pour lancer une partie")
+	color.Blue("     2- Pour voir tout les mots ")
+	color.Blue("    \\--------------------------/")
 	fmt.Scan(&choix)
 
 	for choix != 1 && choix != 2 && choix != 0 {
