@@ -14,7 +14,7 @@ var Word string
 var HiddenWord []rune
 var Counter int = 6
 var LettersAlreadyFound []string
-var WordAlreadyFound []string
+var WordsAlreadyFound []string
 var DiffCounter int
 var TwoPlayersCounter int
 
@@ -56,8 +56,8 @@ func Display() {
 	for Word != string(HiddenWord) && Counter >= 0 {
 		fmt.Print("\033[H\033[2J")
 		color.Yellow("LE JEU DU PENDU !")
-		fmt.Println("\nMot : ", string(HiddenWord))
-		fmt.Printf("Essais restants : %d\n", Counter)
+		fmt.Println("\n\033[32mMot : \033[0m", string(HiddenWord))
+		fmt.Printf("\033[32mEssais restants : %d\033[0m\n", Counter)
 		DisplayHangman(Counter)
 
 		if Counter == 0 {
@@ -65,20 +65,20 @@ func Display() {
 		}
 
 		if len(LettersAlreadyFound) == 1 {
-			fmt.Printf("Lettre déjà utilisé : %s", strings.Join(LettersAlreadyFound, ", "))
+			fmt.Printf("\033[31mLettre déjà utilisé : %s\033[0m", strings.Join(LettersAlreadyFound, ", "))
 		}
 		if len(LettersAlreadyFound) > 1 {
-			fmt.Printf("Lettres déjà utilisées : %s", strings.Join(LettersAlreadyFound, ", "))
+			fmt.Printf("\033[31mLettres déjà utilisées : %s\033[0m", strings.Join(LettersAlreadyFound, ", "))
 		}
 
-		if len(WordAlreadyFound) == 1 {
-			fmt.Printf("\nMot déjà utilisé : %s", strings.Join(WordAlreadyFound, ", "))
+		if len(WordsAlreadyFound) == 1 {
+			fmt.Printf("\n\033[31mMot déjà utilisé : %s\033[0m", strings.Join(WordsAlreadyFound, ", "))
 		}
-		if len(WordAlreadyFound) > 1 {
-			fmt.Printf("\nMots déjà utilisés : %s", strings.Join(WordAlreadyFound, ", "))
+		if len(WordsAlreadyFound) > 1 {
+			fmt.Printf("\n\033[31mMots déjà utilisés : %s\033[0m", strings.Join(WordsAlreadyFound, ", "))
 		}
 
-		fmt.Printf("\n1- Pour entrer une lettre ou un mot !\n\n")
+		color.Blue("\nEntrez une lettre ou un mot !\n\n")
 		FindLetterOrWord()
 	}
 	if Word == string(HiddenWord) {
@@ -134,7 +134,7 @@ func FindLetterOrWord() []rune {
 
 	fmt.Scan(&choix)
 	for !(choix >= "a" && choix <= "z" || choix >= "A" && choix <= "Z") {
-		fmt.Printf("\nVeuillez entrer que des lettres ")
+		color.Blue("\nVeuillez entrer que des lettres ")
 		fmt.Scan(&choix)
 	}
 
@@ -142,14 +142,21 @@ func FindLetterOrWord() []rune {
 		if choix == Word {
 			HiddenWord = []rune(Word)
 		} else {
-			WordAlreadyFound = append(WordAlreadyFound, choix)
+			WordsAlreadyFound = append(WordsAlreadyFound, choix)
 			Counter -= 2
 		}
 
 	} else {
 		for _, letters := range LettersAlreadyFound {
 			if choix == letters {
-				fmt.Printf("Lettre déjà utilisé ! ")
+				color.Blue("Lettre déjà utilisé !\n")
+				fmt.Scan(&choix)
+			}
+		}
+
+		for _, words := range WordsAlreadyFound {
+			if choix == words {
+				color.Blue("Mot déjà utilisé !\n")
 				fmt.Scan(&choix)
 			}
 		}
@@ -202,7 +209,7 @@ func TwoPlayers() {
 	fmt.Scan(&choix)
 
 	for choix != 1 && choix != 2 {
-		color.Blue("Veuillez taper 1 ou 2 ! ")
+		color.Blue("Veuillez taper 1 ou 2 !\n")
 	}
 	switch choix {
 	case 1:
@@ -214,7 +221,7 @@ func TwoPlayers() {
 		fmt.Scan(&wordChoice)
 
 		for !(wordChoice >= "a" && wordChoice <= "z" || wordChoice >= "A" && wordChoice <= "Z") {
-			color.Blue("\nVeuillez entrer des lettres ")
+			color.Blue("\nVeuillez entrer des lettres\n")
 			fmt.Scan(&choix)
 		}
 
