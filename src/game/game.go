@@ -58,7 +58,7 @@ func Display() {
 		color.Yellow("LE JEU DU PENDU !")
 		fmt.Println("\n\033[32mMot : \033[0m", string(HiddenWord))
 		fmt.Printf("\033[32mEssais restants : %d\033[0m\n", Counter)
-		DisplayHangman(Counter)
+		DisplayHangman()
 
 		if Counter == 0 {
 			break
@@ -231,8 +231,8 @@ func TwoPlayers() {
 	}
 }
 
-func DisplayHangman(counter int) {
-	switch counter {
+func DisplayHangman() {
+	switch Counter {
 	case 6:
 		color.Red(`
    +---+
